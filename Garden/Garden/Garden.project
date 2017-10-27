@@ -94,9 +94,13 @@
   </Settings>
   <VirtualDirectory Name="src">
     <File Name="main.cpp"/>
-    <VirtualDirectory Name="Planner">
+    <VirtualDirectory Name="C++ Overlap Classes">
       <File Name="Classes/Overlaps.cpp"/>
       <File Name="Classes/Overlaps.h"/>
+      <File Name="Classes/GardenBed.h"/>
+      <File Name="Classes/GardenBed.cpp"/>
+      <File Name="Classes/Shape.h"/>
+      <File Name="Classes/Shape.cpp"/>
     </VirtualDirectory>
   </VirtualDirectory>
 </CodeLite_Project>
