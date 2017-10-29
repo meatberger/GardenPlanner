@@ -13,9 +13,12 @@
 #define NO_OVERLAP 0 
  
 #include "Shape.h"
+#include "clipper.hpp"
 
-typedef Shape rect;
+bool overlaps( const Rectangle& r1, const Rectangle& r2 );
+bool overlaps( const Circle& r1, const Circle& r2 );
+bool overlaps( const Polygon& c1, const Polygon& r2 );
 
-bool overlaps( const rect& r1, const rect& r2 );
+void detectClipping();
 
 #endif

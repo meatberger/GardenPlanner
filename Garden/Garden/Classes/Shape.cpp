@@ -8,7 +8,7 @@
 #include "Shape.h"
 
  
-Shape::Shape( const point& newOrigin, const int& newLength, const int& newWidth )
+Rectangle::Rectangle( const point& newOrigin, const int& newLength, const int& newWidth )
 {
      // rectangle constructor
      origin = newOrigin;
@@ -16,12 +16,15 @@ Shape::Shape( const point& newOrigin, const int& newLength, const int& newWidth 
      w = newWidth;
      type = rectangle;
 }
- 
+Rectangle::Rectangle()
+{
+     
+}
 Shape::Shape()
 {
 }
  
-void Shape::fillRectFromVect( std::vector<int>& s )
+void Rectangle::fillRectFromVect( std::vector<int>& s )
 {
     for(int i = 0; i < abs( s.size() ); i++)
     {

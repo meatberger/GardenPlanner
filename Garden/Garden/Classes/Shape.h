@@ -27,6 +27,7 @@
      octagon,
      nonagon,
      decagon,
+     hendecagon,
      dodecagon,
      multi
      
@@ -41,15 +42,29 @@ typedef struct point
  
 class Shape
 {
-    public:
-    
-        point origin;
-        int l, w, r;
+public:
+        point center;
+        int radius;
         shapeType type;
-        bool isCircular;
         Shape();
-        Shape( const point&, const int&, const int& );
+};
+class Rectangle : public Shape
+{
+    public:
+        int l, w, r;
+        point origin;
+        Rectangle();
+        Rectangle( const point&, const int&, const int& );
         void fillRectFromVect( std::vector<int>& s );
+};
+class Circle : public Shape
+{
+    
+};
+class Polygon : public Shape
+{
+    public:
+        int sides;
 };
 
 

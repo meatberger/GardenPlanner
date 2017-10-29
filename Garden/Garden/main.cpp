@@ -1,12 +1,13 @@
 #include <string>
 #include <sstream>
 #include <iostream>
-#include "Classes/GardenBed.h"
+#include "Classes/Overlaps.h"
 
 int main(int argc, char **argv)
 {
     using std::string;
     using std::vector;
+    using std::cout;
     
     string coords = argc > 1 ? static_cast<string>( argv[ 1 ] ) : "0,0|0,0";
     
@@ -36,13 +37,15 @@ int main(int argc, char **argv)
     }
     
     // Load up two shapes to be detected    
-    rect r1, r2;
+    Rectangle r1, r2;
 
     r1.fillRectFromVect( shape1 );
     r2.fillRectFromVect( shape2 );
-    if (overlaps( r1,r2 )) std::cout << OVERLAP;
-    else
-        std::cout << NO_OVERLAP;
+   // if (overlaps( r1,r2 )) std::cout << OVERLAP;
+    //else
+     //   std::cout << NO_OVERLAP;
+        
+    detectClipping();
         
             return overlaps( r1,r2 ) ? OVERLAP : NO_OVERLAP;
 }
