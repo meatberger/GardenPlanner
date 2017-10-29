@@ -75,7 +75,8 @@ bool overlaps( const Rectangle& r1, const Rectangle& r2 )
 }
 bool overlaps( const Circle& c1, const Circle& c2 ) 
 {
-     return true;
+    // use the distance formula to detect overlap against the two radii
+    return ( sqrt( pow( ( c2.center.y - c1. center.y ), 2 ) + pow( ( c2.center.x - c1.center.x ), 2) ) < c1.radius + c2.radius );
 }
 bool overlaps( const Polygon& p1, const Polygon& p2 ) 
 {
