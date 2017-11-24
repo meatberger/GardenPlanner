@@ -14,12 +14,14 @@ int main(int argc, char **argv)
     
     // Must have the first and third argument set to the shape types
     // argv[1] and argv[3] must be coordinates (i.e., "2,2|3,3|1543,183")
-    cout << "argc=" << argc << std::endl;
-    if(argc != 5) return NO_OVERLAP;
+    //if(argc != 5) return NO_OVERLAP;
 
     // Magic pointer array of any shape type
     Shapes shapeData;
-
+    string arg = "2,4|4,5";
+    loadShape(shapeData, arg, hexagon);
+    //Shape* shape1 = shapeData[0].release();
+/*
     for( int i = 1; i < 5; i++ )
     {        
         string arg = static_cast<string>(argv[i]);
@@ -38,8 +40,10 @@ int main(int argc, char **argv)
             else if( i == 2 || i == 4 )
                 if(!loadShape(shapeData, arg, type)) return NO_OVERLAP;
 
-    } //end for (all argv)
-                   // cout << "test" << shapeData[0]->coordinates[0][0].X;
+    }*/ //end for (all argv)
+    //for(auto s : shapeData)
+
+   // cout << "test" << shapeData[0]->coordinates[0][0];
     // Test based on a circle
     // In circle test function, use the constructor to make a circle from a shape
     // If both types are circle, or if no overlap, bail
@@ -48,7 +52,7 @@ int main(int argc, char **argv)
 }
 
 /*
- * 
+ * try to ditch the pointer idea and add the shapes to the vector
  */
 bool loadShape( Shapes& shapeData, const std::string& arg, ShapeType type )
 {
@@ -60,15 +64,15 @@ bool loadShape( Shapes& shapeData, const std::string& arg, ShapeType type )
     std::stringstream ss(arg);
     
     int currentParsedInteger;
-    
-    int currentShapeIndex = abs(shapeData.size());
-        
+            
     IntPoint currentPoint;
     
     if(type > 1)
-        shapeData.push_back(std::make_unique<Polygon>());
+        shapeData.push_back(std::unique_ptr<Polygon>());
     else
-        shapeData.push_back(std::make_unique<Circle>());
+        shapeData.push_back(std::unique_ptr<Circle>());
+    
+    int currentShapeIndex = abs(shapeData.size()) - 1;
     
     while (ss >> currentParsedInteger)
     {
@@ -76,6 +80,7 @@ bool loadShape( Shapes& shapeData, const std::string& arg, ShapeType type )
                 
         if(type > 1)
         {
+            Shape* c = shapeData[0].get();
             //See if you are on the X coordinate
             if( ss.peek() == ',' )
             {
@@ -88,7 +93,7 @@ bool loadShape( Shapes& shapeData, const std::string& arg, ShapeType type )
                 currentPoint.Y = currentParsedInteger;
                 
                 //coordinates[0] << is the default setter for clipper paths
-                shapeData[currentShapeIndex]->coordinates[0] << currentPoint; 
+                c->coordinates[0] << currentPoint; 
             }
         }
         else // circle or ellipse
