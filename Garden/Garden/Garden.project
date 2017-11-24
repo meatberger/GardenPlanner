@@ -2,6 +2,20 @@
 <CodeLite_Project Name="Garden" Version="10.0.0" InternalType="Console">
   <Description/>
   <Dependencies/>
+  <VirtualDirectory Name="src">
+    <File Name="main.cpp"/>
+    <VirtualDirectory Name="C++ Overlap Classes">
+      <File Name="Classes/Overlaps.cpp"/>
+      <File Name="Classes/Overlaps.h"/>
+      <File Name="Classes/Shape.h"/>
+      <File Name="Classes/Shape.cpp"/>
+      <File Name="Classes/clipper.cpp"/>
+      <File Name="Classes/clipper.hpp"/>
+      <File Name="Classes/CMakeLists.txt"/>
+      <File Name="Classes/polyclipping.pc.cmakein"/>
+    </VirtualDirectory>
+    <File Name="home.php"/>
+  </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -18,7 +32,7 @@
       </Compiler>
       <Linker Options="" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="yes" DebugArguments="2 &quot;9,6|8,7&quot;  3 &quot;6,4|5,2&quot;" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
@@ -92,18 +106,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="src">
-    <File Name="main.cpp"/>
-    <VirtualDirectory Name="C++ Overlap Classes">
-      <File Name="Classes/Overlaps.cpp"/>
-      <File Name="Classes/Overlaps.h"/>
-      <File Name="Classes/Shape.h"/>
-      <File Name="Classes/Shape.cpp"/>
-      <File Name="Classes/clipper.cpp"/>
-      <File Name="Classes/clipper.hpp"/>
-      <File Name="Classes/CMakeLists.txt"/>
-      <File Name="Classes/polyclipping.pc.cmakein"/>
-    </VirtualDirectory>
-    <File Name="home.php"/>
-  </VirtualDirectory>
 </CodeLite_Project>

@@ -13,7 +13,6 @@
 #define NO_OVERLAP 0 
  
 #include "Shape.h"
-#include "clipper.hpp"
 
 bool overlaps( const Rectangle& r1, const Rectangle& r2 );
 bool overlaps( const Circle& r1, const Circle& r2 );

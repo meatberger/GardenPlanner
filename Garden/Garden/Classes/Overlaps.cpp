@@ -24,11 +24,10 @@
 	//typedef std::vector<Path> Paths;
 void detectClipping()
 {
-	using namespace ClipperLib;
+	/*using namespace ClipperLib;
 	
 	Paths subj(2), clip(1), solution;
-	//std::cout << "subj[1] = " << subj[1] << std::endl;
-	//define outer blue 'subject' polygon
+
 	subj[0] << 
 	  IntPoint(180,200) << IntPoint(260,200) <<
 	  IntPoint(260,150) << IntPoint(180,150);
@@ -41,10 +40,6 @@ void detectClipping()
 	clip[0] << 
 	  IntPoint(210,170) << IntPoint(230,170) << 
 	  IntPoint(230,180) << IntPoint(210,180);
-	
-	//draw input polygons with user-defined routine ... 
-	//DrawPolygons(subj, 0x160000FF, 0x600000FF); //blue
-	//DrawPolygons(clip, 0x20FFFF00, 0x30FF0000); //orange
 	
 	//perform intersection ...
 	Clipper c;
@@ -64,19 +59,19 @@ void detectClipping()
         
     if(!overlaps)
         std::cout << "No Overlap";
-    
+    */
 }    
 bool overlaps( const Rectangle& r1, const Rectangle& r2 ) 
 {
-    return !( r1.origin.x >= r2.origin.x + r2.l || 
-               r1.origin.y + r1.w <= r2.origin.y ||
-               r1.origin.x + r1.l <= r2.origin.x || 
-               r1.origin.y >= r2.origin.y + r2.w );
+    return !( r1.origin.X >= r2.origin.X + r2.l || 
+               r1.origin.Y + r1.w <= r2.origin.Y ||
+               r1.origin.X + r1.l <= r2.origin.X || 
+               r1.origin.Y >= r2.origin.Y + r2.w );
 }
 bool overlaps( const Circle& c1, const Circle& c2 ) 
 {
     // use the distance formula to detect overlap against the two radii
-    return ( sqrt( pow( ( c2.center.y - c1. center.y ), 2 ) + pow( ( c2.center.x - c1.center.x ), 2) ) < c1.radius + c2.radius );
+    return ( sqrt( pow( ( c2.origin.Y - c1. origin.Y ), 2 ) + pow( ( c2.origin.X - c1.origin.X ), 2) ) < c1.radius + c2.radius );
 }
 bool overlaps( const Polygon& p1, const Polygon& p2 ) 
 {

@@ -8,7 +8,7 @@
 #include "Shape.h"
 
  
-Rectangle::Rectangle( const point& newOrigin, const int& newLength, const int& newWidth )
+Rectangle::Rectangle( const ClipperLib::IntPoint& newOrigin, const int& newLength, const int& newWidth )
 {
      // rectangle constructor
      origin = newOrigin;
@@ -20,9 +20,6 @@ Rectangle::Rectangle()
 {
      
 }
-Shape::Shape()
-{
-}
  
 void Rectangle::fillRectFromVect( std::vector<int>& s )
 {
@@ -33,7 +30,7 @@ void Rectangle::fillRectFromVect( std::vector<int>& s )
         switch( i )
         {
             case 0:
-                type = (shapeType)v;
+                type = static_cast<ShapeType>( v );
                 break;
             case 1:
                 l = v;
@@ -42,10 +39,10 @@ void Rectangle::fillRectFromVect( std::vector<int>& s )
                 w = v;
                 break;
             case 3:
-                origin.x = v;
+                origin.X = v;
                 break;
             case 4:
-                origin.y = v;
+                origin.Y = v;
                 break;
         }
         

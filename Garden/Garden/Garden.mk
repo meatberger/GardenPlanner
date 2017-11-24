@@ -5,15 +5,15 @@
 ## Debug
 ProjectName            :=Garden
 ConfigurationName      :=Debug
-WorkspacePath          :=/opt/lampp/htdocs/GardenPlanner/Garden
-ProjectPath            :=/opt/lampp/htdocs/GardenPlanner/Garden/Garden
+WorkspacePath          :=/home/berger/Documents/GardenPlanner/Garden
+ProjectPath            :=/home/berger/Documents/GardenPlanner/Garden/Garden
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Andrew Berger
-Date                   :=28/10/17
+Date                   :=23/11/17
 CodeLitePath           :=/home/berger/.codelite
 LinkerName             :=/usr/bin/x86_64-linux-gnu-g++
 SharedObjectLinkerName :=/usr/bin/x86_64-linux-gnu-g++ -shared -fPIC
@@ -92,7 +92,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/opt/lampp/htdocs/GardenPlanner/Garden/Garden/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/berger/Documents/GardenPlanner/Garden/Garden/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
 
@@ -100,7 +100,7 @@ $(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
 
 $(IntermediateDirectory)/Classes_Overlaps.cpp$(ObjectSuffix): Classes/Overlaps.cpp $(IntermediateDirectory)/Classes_Overlaps.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/opt/lampp/htdocs/GardenPlanner/Garden/Garden/Classes/Overlaps.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Classes_Overlaps.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/berger/Documents/GardenPlanner/Garden/Garden/Classes/Overlaps.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Classes_Overlaps.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Classes_Overlaps.cpp$(DependSuffix): Classes/Overlaps.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Classes_Overlaps.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Classes_Overlaps.cpp$(DependSuffix) -MM Classes/Overlaps.cpp
 
@@ -108,7 +108,7 @@ $(IntermediateDirectory)/Classes_Overlaps.cpp$(PreprocessSuffix): Classes/Overla
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Classes_Overlaps.cpp$(PreprocessSuffix) Classes/Overlaps.cpp
 
 $(IntermediateDirectory)/Classes_Shape.cpp$(ObjectSuffix): Classes/Shape.cpp $(IntermediateDirectory)/Classes_Shape.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/opt/lampp/htdocs/GardenPlanner/Garden/Garden/Classes/Shape.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Classes_Shape.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/berger/Documents/GardenPlanner/Garden/Garden/Classes/Shape.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Classes_Shape.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Classes_Shape.cpp$(DependSuffix): Classes/Shape.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Classes_Shape.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Classes_Shape.cpp$(DependSuffix) -MM Classes/Shape.cpp
 
@@ -116,7 +116,7 @@ $(IntermediateDirectory)/Classes_Shape.cpp$(PreprocessSuffix): Classes/Shape.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Classes_Shape.cpp$(PreprocessSuffix) Classes/Shape.cpp
 
 $(IntermediateDirectory)/Classes_clipper.cpp$(ObjectSuffix): Classes/clipper.cpp $(IntermediateDirectory)/Classes_clipper.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/opt/lampp/htdocs/GardenPlanner/Garden/Garden/Classes/clipper.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Classes_clipper.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/berger/Documents/GardenPlanner/Garden/Garden/Classes/clipper.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Classes_clipper.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Classes_clipper.cpp$(DependSuffix): Classes/clipper.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Classes_clipper.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Classes_clipper.cpp$(DependSuffix) -MM Classes/clipper.cpp
 
