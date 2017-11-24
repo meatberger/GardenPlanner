@@ -20,7 +20,7 @@
 
 typedef enum ShapeType
 {
-     
+     invalid=-1,
      circle, 
      ellipse,
      custom, 
@@ -49,13 +49,10 @@ class Shape
 {
     public:
         ShapeType type;
-        ClipperLib::Paths coordinates;
+        ClipperLib::Path coordinates;
         ClipperLib::IntPoint origin;
         virtual ~Shape() {}
-        int radius;
 };
-
-typedef std::vector<std::unique_ptr<Shape>> Shapes;
 
 class Rectangle : public Shape
 {
@@ -79,13 +76,20 @@ class Circle : public Ellipse
     public:
         Circle(); 
         Circle(Shape); // Construct a circle from any shape
+        int radius;
 };
 
 // polygon is any shape other than an ellipse, circle, rectangle
 class Polygon : public Shape
 {
-    // Needs no additional properties atm
+    public:
+        bool isset();
+        Polygon();
 };
+Polygon::Polygon()
+{
+    isset = false;
+}
 Polygon polygonFromEllipse(Ellipse);
 
 inline Polygon polygonFromEllipse( Ellipse e )
@@ -95,7 +99,7 @@ inline Polygon polygonFromEllipse( Ellipse e )
     Polygon ellipticalApproximation;
     
     for( int theta = 0; theta < 360; theta += 15 )
-        ellipticalApproximation.coordinates[0] << IntPoint(e.a*cos(theta), e.b*sin(theta));
+        ellipticalApproximation.coordinates << IntPoint(e.a*cos(theta), e.b*sin(theta));
         
     return ellipticalApproximation;
 }
@@ -116,7 +120,7 @@ inline Circle::Circle( Shape s )
         
     IntPoint minX, minY, maxX, maxY;
     
-    for( auto pnt : coordinates[0] )
+    for( auto pnt : coordinates )
     {
         if( pnt.X < minX.X )
             minX = pnt; // set to the min x val
@@ -133,7 +137,7 @@ inline Circle::Circle( Shape s )
     int xAxis = sqrt( pow( maxX.Y - minX.Y, 2 ) + pow( maxX.X - minX.X, 2 ) );
     int yAxis = sqrt( pow( maxY.Y - minY.Y, 2 ) + pow( maxY.X - minY.X, 2 ) );
 
-    // radius is the larger axis
+    // radius is the larger axis divided by two
     origin.X = xAxis >> 1;
     origin.Y = yAxis >> 1;
     
