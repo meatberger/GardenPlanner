@@ -14,7 +14,7 @@ Rectangle::Rectangle( const ClipperLib::IntPoint& newOrigin, const int& newLengt
      origin = newOrigin;
      l = newLength;
      w = newWidth;
-     type = rectangle;
+     type = RECTANGLE;
 }
 Rectangle::Rectangle()
 {

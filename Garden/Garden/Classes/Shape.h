@@ -20,22 +20,12 @@
 
 typedef enum ShapeType
 {
-     invalid=-1,
-     circle, 
-     ellipse,
-     custom, 
-     triangle, 
-     rectangle, 
-     pentagon, 
-     hexagon, 
-     septagon, 
-     octagon,
-     nonagon,
-     decagon,
-     hendecagon,
-     dodecagon,
-     multi
-     
+     INVALID=-1,
+     CIRCLE, 
+     ELLIPSE,
+     POLYGON, // not an equilateral polygon 
+     TRIANGLE,
+     RECTANGLE
 } ShapeType;
  
 typedef struct point
@@ -68,7 +58,13 @@ class Ellipse : public Shape
     public:
         int a;
         int b;
+        Ellipse();
 };
+
+inline Ellipse::Ellipse()
+{
+    type = ELLIPSE;
+}
 
 // Circle inherits from ellipse
 class Circle : public Ellipse
@@ -83,14 +79,13 @@ class Circle : public Ellipse
 class Polygon : public Shape
 {
     public:
-        bool isset();
         Polygon();
 };
-Polygon::Polygon()
+inline Polygon::Polygon()
 {
-    isset = false;
+    type = POLYGON;
 }
-Polygon polygonFromEllipse(Ellipse);
+inline Polygon polygonFromEllipse(Ellipse);
 
 inline Polygon polygonFromEllipse( Ellipse e )
 {
@@ -106,6 +101,7 @@ inline Polygon polygonFromEllipse( Ellipse e )
 
 inline Circle::Circle()
 {
+    type = CIRCLE;
 }
 
 // Create a circle from the polygon
@@ -113,7 +109,7 @@ inline Circle::Circle( Shape s )
 {
     	using namespace ClipperLib;
 
-    if( s.type == ellipse )
+    if( s.type == ELLIPSE )
         radius = a > b ? a : b;
     else
     {

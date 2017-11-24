@@ -5,6 +5,7 @@
 
 Polygon polygonFromString( const std::string& arg );
 Circle circleFromString( const std::string& arg );
+Ellipse ellipseFromString( const std::string& arg );
 ShapeType shapeTypeFromString( char* );
 
 int main(int argc, char **argv)
@@ -25,7 +26,7 @@ int main(int argc, char **argv)
     type2 = shapeTypeFromString(argv[2]);
 
     // If there is a parse error...
-    if( type1 == invalid || type2 == invalid ) 
+    if( type1 == INVALID || type2 == INVALID ) 
         return INPUT_ERROR;
         
     // get the 2 strings of coordinates from the user
@@ -33,40 +34,56 @@ int main(int argc, char **argv)
     string arg2 = static_cast<string>(argv[4]);
     
     // if the overlap is between two simple circles...
-    if(type1 == circle && type2 == circle)
+    if(type1 == CIRCLE && type2 == CIRCLE)
         return overlaps( circleFromString(arg1), circleFromString(arg2) ) ? OVERLAP : NO_OVERLAP;
 
     Circle c1, c2;
     
     Polygon p1,p2;
     
+    Ellipse e1, e2;
+    
     // test the shapes as two simple circles
     // The Circle(Shape) constructor approximates thier radii
 
-    if(type1 == circle)
+    if(type1 == CIRCLE)
         c1 = circleFromString(arg1);
-    else
+    else if(type1 != ELLIPSE)
     {
         p1 = polygonFromString(arg1);
         c1 = Circle(p1);
     }
-    if(type2 == circle)
-        c2 = circleFromString(arg2);
     else
+    {
+        e1 = ellipseFromString(arg1);
+        c1 = Circle(e1);
+    }
+    if(type2 == CIRCLE)
+        c2 = circleFromString(arg2);
+    else if(type2 != ELLIPSE)
     {
         p2 = polygonFromString(arg2);
         c2 = Circle(p2);
     }
-    // Now, a circle has been constructed for each shape
-    bool mayHaveOverlap = overlaps( c1, c2 );
+    else
+    {
+        e2 = ellipseFromString(arg2);
+        c2 = Circle(e2);
+    }
     
+    // Now, a circle has been constructed for each shape    
     // If their circular approximations don't overlap...
-    if( !mayHaveOverlap ) return NO_OVERLAP; 
+    if( !overlaps( c1, c2 ) ) return NO_OVERLAP; 
     
-    // further testing is required... 
-    // Else, use the detectClipping function that needs revision
-            //return detectClipping( r1,r2 ) ? OVERLAP : NO_OVERLAP;
+    // So the shapes may overlap...
+    // To test further, "polygonize" any ellipses
+    
+    if(type1 == ELLIPSE) p1 = polygonFromEllipse(e1);
+    if(type2 == ELLIPSE) p2 = polygonFromEllipse(e2);
+    
+    return overlaps( p1, p2 ) ? OVERLAP : NO_OVERLAP;
 }
+
 ShapeType shapeTypeFromString( char* arg )
 {
     try
@@ -75,9 +92,10 @@ ShapeType shapeTypeFromString( char* arg )
     }
     catch(...)
     {
-        return invalid;
+        return INVALID;
     }
 }
+
 Polygon polygonFromString( const std::string& arg )
 {
     using std::string;
@@ -107,6 +125,7 @@ Polygon polygonFromString( const std::string& arg )
                 currentPoint.Y = currentParsedInteger;
                 
                 //coordinates[0] << is the default setter for clipper paths
+                p.type = POLYGON;
                 p.coordinates << currentPoint;
             }
         }
@@ -135,6 +154,34 @@ Circle circleFromString( const std::string& arg )
         }
         else
             c.radius = currentParsedInteger; 
+    }
+        return c;
+}
+
+Ellipse ellipseFromString( const std::string& arg )
+{
+    std::stringstream ss(arg);
+    
+    int currentParsedInteger;
+                           
+    Ellipse c;
+    
+    while (ss >> currentParsedInteger)
+    {
+        if( ss.peek() == ',' )
+        {
+            ss.ignore();
+            c.origin.X = currentParsedInteger;
+        }
+        else if( ss.peek() == '|' )
+        {
+            ss.ignore();
+            c.origin.Y = currentParsedInteger;
+        }
+        else if( ss.peek() == ':' )
+            c.a = currentParsedInteger;
+        else 
+            c.b = currentParsedInteger;
     }
         return c;
 }
