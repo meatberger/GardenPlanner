@@ -1,6 +1,5 @@
 #include <string>
 #include <sstream>
-#include <iostream>
 #include "Classes/Overlaps.h"
 
 Polygon polygonFromString( const std::string& arg );
@@ -70,7 +69,6 @@ int main(int argc, char **argv)
         e2 = ellipseFromString(arg2);
         c2 = Circle(e2);
     }
-    
     // Now, a circle has been constructed for each shape    
     // If their circular approximations don't overlap...
     if( !overlaps( c1, c2 ) ) return NO_OVERLAP; 
@@ -119,13 +117,12 @@ Polygon polygonFromString( const std::string& arg )
                 ss.ignore();
                 currentPoint.X = currentParsedInteger;
             }
-            else if( ss.peek() == '|' ) // Y coordinate
+            else // Y coordinate
             {
                 ss.ignore();
                 currentPoint.Y = currentParsedInteger;
                 
                 //coordinates[0] << is the default setter for clipper paths
-                p.type = POLYGON;
                 p.coordinates << currentPoint;
             }
         }
@@ -179,8 +176,11 @@ Ellipse ellipseFromString( const std::string& arg )
             c.origin.Y = currentParsedInteger;
         }
         else if( ss.peek() == ':' )
+        {
             c.a = currentParsedInteger;
-        else 
+            ss.ignore();
+        }
+        else
             c.b = currentParsedInteger;
     }
         return c;

@@ -16,51 +16,7 @@
  
 #include "Overlaps.h"
 #include <iostream>
-	
-	//from clipper.hpp ...
-	//typedef signed long long cInt;
-	//struct IntPoint {cInt X; cInt Y;};
-	//typedef std::vector<IntPoint> Path;
-	//typedef std::vector<Path> Paths;
-void detectClipping()
-{
-	/*using namespace ClipperLib;
-	
-	Paths subj(2), clip(1), solution;
-
-	subj[0] << 
-	  IntPoint(180,200) << IntPoint(260,200) <<
-	  IntPoint(260,150) << IntPoint(180,150);
-	
-	//define subject's inner triangular 'hole' (with reverse orientation)
-	//subj[1] << 
-	  //IntPoint(215,160) << IntPoint(230,190) << IntPoint(200,190);
-	
-	//define orange 'clipping' polygon
-	clip[0] << 
-	  IntPoint(210,170) << IntPoint(230,170) << 
-	  IntPoint(230,180) << IntPoint(210,180);
-	
-	//perform intersection ...
-	Clipper c;
-	c.AddPaths(subj, ptSubject, true);
-	c.AddPaths(clip, ptClip, true);
-	c.Execute(ctIntersection, solution, pftNonZero, pftNonZero);
-
-	//draw solution with user-defined routine ... 
-	//DrawPolygons(solution, 0x3000FF00, 0xFF006600); //solution shaded green
-    bool overlaps;
-    
-    for (auto& i: solution)
-    {
-        std::cout << i << ' ';
-        overlaps = true;
-    }
-        
-    if(!overlaps)
-        std::cout << "No Overlap";
-    */
-}    
+  
 bool overlaps( const Rectangle& r1, const Rectangle& r2 ) 
 {
     return !( r1.origin.X >= r2.origin.X + r2.l || 
@@ -75,5 +31,24 @@ bool overlaps( const Circle& c1, const Circle& c2 )
 }
 bool overlaps( const Polygon& p1, const Polygon& p2 ) 
 {
-    return true;
+    using namespace ClipperLib;
+    Paths subj, clip, solution;
+    
+    subj.push_back(p1.coordinates);
+    clip.push_back(p2.coordinates);
+
+	Clipper c;
+	c.AddPaths( subj, ptSubject, true );
+	c.AddPaths( clip, ptClip, true );
+	c.Execute( ctIntersection, solution, pftNonZero, pftNonZero );
+
+    bool overlaps;
+    
+    for (auto& i: solution)
+    {
+        std::cout << i << ' ';
+        overlaps = true;
+    }
+        
+    return overlaps;
 }

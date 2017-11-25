@@ -16,7 +16,9 @@
 #include <cassert>
 #include <functional>
 #include "clipper.hpp"
+#include <iostream>
 
+#define PI 3.14159265
 
 typedef enum ShapeType
 {
@@ -85,17 +87,24 @@ inline Polygon::Polygon()
 {
     type = POLYGON;
 }
-inline Polygon polygonFromEllipse(Ellipse);
+inline Polygon polygonFromEllipse( const Ellipse& );
 
-inline Polygon polygonFromEllipse( Ellipse e )
+inline Polygon polygonFromEllipse( Ellipse& e )
 {
     using namespace ClipperLib;
 
     Polygon ellipticalApproximation;
     
-    for( int theta = 0; theta < 360; theta += 15 )
-        ellipticalApproximation.coordinates << IntPoint(e.a*cos(theta), e.b*sin(theta));
-        
+        for( double theta = 0; theta <= 2*PI; theta += PI/6 )
+        {
+            double deltaX = e.a * cos(theta);
+            double deltaY = e.b * sin(theta);
+
+            int x = std::round( deltaX ); // round
+            int y = std::round( deltaY ); // to the nearest int
+
+        ellipticalApproximation.coordinates << IntPoint(x + (e.origin.X), y + (e.origin.Y));
+        }
     return ellipticalApproximation;
 }
 
@@ -109,35 +118,37 @@ inline Circle::Circle( Shape s )
 {
     	using namespace ClipperLib;
 
-    if( s.type == ELLIPSE )
-        radius = a > b ? a : b;
-    else
-    {
-        
-    IntPoint minX, minY, maxX, maxY;
-    
-    for( auto pnt : coordinates )
-    {
-        if( pnt.X < minX.X )
-            minX = pnt; // set to the min x val
-        if( pnt.Y < minY.Y )
-            minY = pnt; // set to the min y val
+        if( s.type == ELLIPSE )
+            radius = a > b ? a : b;
+        else
+        {
             
-        if( pnt.X > maxX.X )
-            maxX = pnt; // max x
-        if( pnt.Y > maxY.Y )
-            maxY = pnt; // max y
-    }
-    
-    // Use the distance formula to see how large the circle's radius needs to be
-    int xAxis = sqrt( pow( maxX.Y - minX.Y, 2 ) + pow( maxX.X - minX.X, 2 ) );
-    int yAxis = sqrt( pow( maxY.Y - minY.Y, 2 ) + pow( maxY.X - minY.X, 2 ) );
+        IntPoint minX, minY, maxX, maxY;
+        
+        minX = minY = s.coordinates[0];
 
-    // radius is the larger axis divided by two
-    origin.X = xAxis >> 1;
-    origin.Y = yAxis >> 1;
-    
-    radius = xAxis > yAxis ? origin.X : origin.Y;
+        for( auto pnt : s.coordinates )
+        {
+            if( pnt.X < minX.X )
+                minX = pnt; // set to the min x val
+            if( pnt.Y < minY.Y )
+                minY = pnt; // set to the min y val
+                
+            if( pnt.X > maxX.X )
+                maxX = pnt; // max x
+            if( pnt.Y > maxY.Y )
+                maxY = pnt; // max y
+        }
+
+        // Use the distance formula to see how large the circle's radius needs to be
+        int xAxis = sqrt( pow( maxX.Y - minX.Y, 2 ) + pow( maxX.X - minX.X, 2 ) );
+        int yAxis = sqrt( pow( maxY.Y - minY.Y, 2 ) + pow( maxY.X - minY.X, 2 ) );
+
+        // radius is the larger axis divided by two
+        origin.X = xAxis >> 1;
+        origin.Y = yAxis >> 1;
+        
+        radius = xAxis > yAxis ? origin.X : origin.Y;
 
     }
 }
