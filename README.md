@@ -12,6 +12,8 @@ A Binary file will detect the overlap. The C++ for it is in the Garden/Garden/ d
 
 The php and html and website code for the garden project are in the same workspace.
 
+How to use the overlap binary:
+
 Pass in the arguments in the form of:
 
 Arg1,2: (int) shape1 and two types (0 for circle, 1 for ellipse, and 2 for any other polygon)
@@ -22,5 +24,5 @@ Arg3,4: (int) shape1 and two coordinates ("x,y|x,y|x,y") for a polygon,
 
 exit code is 0 for no overlap, 1 if two circles overlapped.
 
-Otherwise, the program will also output the path of the "solution". That is, the path where the two shapes intersect
+Otherwise, the binary will also output the path of the "solution". That is, the path where the two shapes intersect
                                                                                                                                              
