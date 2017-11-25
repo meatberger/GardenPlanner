@@ -77,8 +77,10 @@ int main(int argc, char **argv)
     // To test further, "polygonize" any ellipses
     
     if(type1 == ELLIPSE) p1 = polygonFromEllipse(e1);
+    else if(type1 == CIRCLE) p1 = polygonFromEllipse(Ellipse(c1.origin, c1.radius, c1.radius));
     if(type2 == ELLIPSE) p2 = polygonFromEllipse(e2);
-    
+    else if(type2 == CIRCLE) p1 = polygonFromEllipse(Ellipse(c2.origin, c2.radius, c2.radius));
+
     return overlaps( p1, p2 ) ? OVERLAP : NO_OVERLAP;
 }
 

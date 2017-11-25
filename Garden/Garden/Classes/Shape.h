@@ -61,8 +61,14 @@ class Ellipse : public Shape
         int a;
         int b;
         Ellipse();
+        Ellipse(const ClipperLib::IntPoint&, int, int);
 };
-
+inline Ellipse::Ellipse(const ClipperLib::IntPoint& o, int x, int y)
+{
+    a = x;
+    b = y;
+    origin = o;
+}
 inline Ellipse::Ellipse()
 {
     type = ELLIPSE;
@@ -88,8 +94,7 @@ inline Polygon::Polygon()
     type = POLYGON;
 }
 inline Polygon polygonFromEllipse( const Ellipse& );
-
-inline Polygon polygonFromEllipse( Ellipse& e )
+inline Polygon polygonFromEllipse( const Ellipse& e )
 {
     using namespace ClipperLib;
 
@@ -103,7 +108,7 @@ inline Polygon polygonFromEllipse( Ellipse& e )
             int x = std::round( deltaX ); // round
             int y = std::round( deltaY ); // to the nearest int
 
-        ellipticalApproximation.coordinates << IntPoint(x + (e.origin.X), y + (e.origin.Y));
+            ellipticalApproximation.coordinates << IntPoint(x + (e.origin.X), y + (e.origin.Y));
         }
     return ellipticalApproximation;
 }
