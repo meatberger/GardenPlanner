@@ -11,7 +11,6 @@ int main(int argc, char **argv)
 {
     using std::string;
     using std::cout;
-    
     // Must have argv[1] and argv[2] set to the shape types
     // argv[3] and argv[4] must be coordinates (i.e., "2,2|3,3|1543,183")
     if(argc != 5) return INPUT_ERROR;

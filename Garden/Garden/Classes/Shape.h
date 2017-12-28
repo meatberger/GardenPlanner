@@ -25,7 +25,7 @@ typedef enum ShapeType
      INVALID=-1,
      CIRCLE, 
      ELLIPSE,
-     POLYGON, // not an equilateral polygon 
+     POLYGON,
      TRIANGLE,
      RECTANGLE
 } ShapeType;

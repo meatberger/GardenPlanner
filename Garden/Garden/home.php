@@ -73,4 +73,11 @@
     
     
   </script>
+  <p><? 
+  $com = '';
+  $exitCode = 0;
+  exec('/opt/lampp/bin/Garden 2 2 "2,2|3,3|1543,183" "2,2|3,3|1543,183"', $com, $exitCode); 
+  var_dump($com);
+  echo '<br><br>exit=' . $exitCode . '<br><br>';
+  ?></p>
 </html> 
