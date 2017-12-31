@@ -15,6 +15,11 @@
       <File Name="Classes/polyclipping.pc.cmakein"/>
     </VirtualDirectory>
     <File Name="home.php"/>
+    <File Name="FileIO.php"/>
+    <File Name="Garden.php"/>
+    <File Name="Shapes.php"/>
+    <File Name="GardenElements.php"/>
+    <File Name="ClipDetector.php"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

@@ -6,7 +6,6 @@
 
 class Garden extends SimpleXMLElement
 {
-    
 }
 
 ?>

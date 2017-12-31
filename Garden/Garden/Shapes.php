@@ -17,7 +17,8 @@ class Shape
     public $coordinates;
     public $border;
     public $origin;
-
+    public $type;
+    
     function __construct()
     {
         $coordinates = [];
