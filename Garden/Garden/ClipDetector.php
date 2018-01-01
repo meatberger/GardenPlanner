@@ -2,7 +2,11 @@
 
 /*
  * ClipDetector.php
+ * © Andrew Berger, Pellissippi State Community College
+ * Utilizes the C++ overlap binary to detect shape overlap
  */
+
+require_once 'Shapes.php';
 
 class ClipDetector
 {
@@ -13,7 +17,7 @@ class ClipDetector
         $this->clippedArea = new Shape;
     }
     
-    public foundClipping( $s1, $s2 ) : bool
+    public function foundClipping( $s1, $s2 ) : bool
     {
         $answer = '';
         $exitCode = 0;
@@ -45,7 +49,7 @@ class ClipDetector
         {
             foreach( $answer as $character )
             {
-                if( preg_match( '\[^)(,\]', $answer ) ) 
+                if( preg_match( '/^)(,/', $answer ) ) 
                     $this->clippedArea->coordinates[] = intval($character);
             }
         }           

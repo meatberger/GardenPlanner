@@ -1,11 +1,11 @@
 <?
 /*
  * Home.php
- * Pellissippi State Garden
- * Andrew Berger
+ * © Andrew Berger, Pellissippi State Community College
  * The main page for the Garden Planner
  */
  
+ require_once 'FileIO.php';
  ?>
 <html>
 <head>
@@ -65,12 +65,22 @@
       fill: '#00D2FF',
       stroke: 'black',
       strokeWidth: 0,
-      closed : true
+      closed : true,
+      draggable : true,
+      name : "blob"
     });
     // add the shape to the layer
     layer.add(poly);
     // add the layer to the stage
     stage.add(layer);
-    
+    var previousShape;
+    stage.on("dragend", function(e)
+    {
+        // var pos = stage.getPointerPosition();
+        // var shape = layer.getIntersection(pos);
+        console.log( "e.target = " + e.target.x() );
+        //layer.draw();
+    });
+
   </script>
 </html> 
