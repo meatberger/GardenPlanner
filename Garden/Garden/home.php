@@ -46,18 +46,19 @@
         height: height
     });
     var background = new Konva.Layer();
-    for (var i = 0; i <= (width / gridSize); i++) {
-    background.add(new Konva.Line({
-        points: [i * gridSize, 0, i * gridSize, height],
-        stroke: '#ccc',
-        strokeWidth: 1
-    }));
-    background.add(new Konva.Line({
-        points: [0, i * gridSize, width, i * gridSize],
-        stroke: '#ccc',
-        strokeWidth: 1
-    }));
-}
+    for (var i = 0; i <= (width / gridSize); i++)
+	{
+	    background.add(new Konva.Line({
+		points: [i * gridSize, 0, i * gridSize, height],
+		stroke: '#ccc',
+		strokeWidth: 1
+	    }));
+	    background.add(new Konva.Line({
+		points: [0, i * gridSize, width, i * gridSize],
+		stroke: '#ccc',
+		strokeWidth: 1
+	    }));
+	}
     stage.add(background);
     var layer = new Konva.Layer();
     var poly = new Konva.Line({
@@ -74,13 +75,48 @@
     // add the layer to the stage
     stage.add(layer);
     var previousShape;
+
+	function ajaxCall(url)
+	{
+	    if(var1!==false){url=url+'?'+var1Name+'='+var1;}
+	    if(var2!==false){url=url+'&'+var2Name+'='+var2;}
+		$.ajax(
+	    {
+		async:true, url:url,success:function(result)
+		    {
+			json = result;
+		}
+	    } )
+		    .done(function(msg)
+		{
+		    done = true;
+		 
+		    switch(msg)
+		    {
+		        case '23':
+		        alert('You may buy no more than 10 of any item');
+		        $('#quantity'+id).val(10);
+		        break;
+
+		        case '24':
+		        alert('Invalid Entry');
+		        $('#quantity'+id).val(1);
+		        break;
+
+		        default:
+		        json=msg;
+		        break;
+		    }
+		        ajaxDone();
+		});
+	}
     stage.on("dragend", function(e)
     {
         // var pos = stage.getPointerPosition();
         // var shape = layer.getIntersection(pos);
         console.log( "e.target = " + e.target.x() );
+	var1
         //layer.draw();
     });
-
   </script>
 </html> 

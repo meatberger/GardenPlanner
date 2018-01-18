@@ -8,6 +8,12 @@
 
 require_once 'Shapes.php';
 
+
+if (!defined('GARDEN_FOLDER')) 
+{
+    define('GARDEN_FOLDER', '/opt/lampp/bin/Garden');
+}
+
 class ClipDetector
 {
     public $clippedArea;
@@ -25,7 +31,7 @@ class ClipDetector
         $numberOfShapeOneCoordinates = count($s1.coordinates);
         $numberOfShapeTwoCoordinates = count($s2.coordinates);
         // Make the query string ( Arguments in the form type type "x,y|x,y" "x,y|x,y" ) then | radii
-        $clipQuery = '/opt/lampp/bin/Garden' . intval($s1.type) . ' ' . intval($s2.type) . ' "';
+        $clipQuery = GARDEN_FOLDER . intval($s1.type) . ' ' . intval($s2.type) . ' "';
         // So far (example) -> '/opt/lampp/bin/Garden 2 2 "'
         for( $i = 0; $i < $numberOfShapeOneCoordinates; $i++ )
             $clipQuery .= intval( $s1.coordinates[$i] ) . ( ( $i % 2 == 1 && $i != $numberOfShapeOneCoordinates - 1 ) ? '|' : ',' );
