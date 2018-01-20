@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<garden>
+<unit>US</unit><!--Two possible values: US,INT & this is really only important for area-->
+<size>300</size><!--Gardens are always square, this value is the length of one side-->
+<color>15,12,255</color><!--Color is an rgb value that the user may change-->
+<border>0</border><!--This value is set to 0 if no border-->
+<substrate>9</substrate><!--This value is a numbered code: see gardenElements.php-->
+<bed>
+<border>0</border>
+<substrate>8</substrate>
+<color>35,122,12</color>
+<type>2</type><!--Type is the type of shape the element assumes, 2 is a polygon-->
+<coordinates>2,2 0,3 0,5 2,7 5,12 9,8 9,1</coordinates><!--This value is space delimited for polygons-->
+<walkway><!--Type is obselete for walkways, as they will be rectangular. This one lies within a garden bed-->
+<substrate>8</substrate>
+<color>45,12,250</color>
+<coordinates>3,4 5,3 7,8 6,8</coordinates>
+<stones><!--The stones tag wil contain several other tags within it-->
+<origins>4,4 5,6</origins><!--Where are the stones located?-->
+<type>2</type><!--Type is the shape once again for stones, yet 0 is circular and 2 is rectangular-->
+<num>2</num><!--How many stones are in the walkway?-->
+<size>1</size><!--Length of one side, or the radius-->
+</stones>
+</walkway>
+</bed>
+<walkway><!--Walkway outside of garden beds, in the main garden element-->
+<substrate>8</substrate><!--Even walkways can have a substrate type, brick indicates 0 stones-->
+<color>5,132,50</color>
+<coordinates>23,23 35,33 27,38 20,32</coordinates>
+<stones>
+<origins>25,25 27,25 29,30</origins>
+<type>0</type><!--0=circle-->
+<num>3</num>
+<size>2</size><!--Radius of the stones in this case-->
+</stones>
+</walkway>
+<bed>
+<type>0</type><!--The type tag is in every garden element but walkways and the garden itself-->
+<substrate>5</substrate>
+<border>2,5,15,15,15</border><!--Width, Substrate, R, G, B-->
+<color>125,125,125</color>
+<origin>9,6</origin><!--There is only one coordinate for elliptical shapes-->
+<radius>3</radius><!--But also a radius tag-->
+</bed>
+<bed>
+<type>1</type><!--type 1 is an oblong ellipse (not circular)-->
+<substrate>5</substrate>
+<border>0</border>
+<color>52,32,5</color>
+<features><!--This bed contains plants. In the future, more features besides plants may be added-->
+<featureType>0</featureType><!--This value is only 0 (plant) for now, but can change if for instance water features are added-->
+<num>3</num><!--The setup of features is similar to that of walkways-->
+<origins>26,26 28,30 32,38</origins>
+<!--One major difference is that sizes must be an array of different-sized data for different plants-->
+<sizes>3,2,1</sizes>
+<!--Similarly, types must be an array of different values that correspond to plants in the database-->
+<types>13,12,11</types>
+<z>0</z><!--This tag allows for 3D stacking. Just add another features tag with a higher z value-->
+</features>
+<origin>25,16</origin>
+<radius>3 5</radius>
+<!--The radius tag for classic ellipses has two values for major(a) & minor(b) radii-->
+</bed>
+</garden>
