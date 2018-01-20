@@ -15,6 +15,12 @@ class Garden
     public $length;
     public $width;
     public $unit; // The unit of measurement for the garden
+    
+    public function __construct()
+    {
+        $beds = [];
+        $walkways = [];
+    }
 }
 
 ?>

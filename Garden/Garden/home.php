@@ -5,8 +5,16 @@
  * The main page for the Garden Planner
  */
  
- require_once 'FileIO.php';
- ?>
+require_once 'VisualGarden.php';
+$garden = new VisualGarden;
+//$garden->grow();
+if(isset($_POST["submit"]))
+{
+    $garden->load();
+}
+
+?>
+
 <html>
 <head>
 <script src="https://cdn.rawgit.com/konvajs/konva/1.7.3/konva.min.js"></script>
@@ -93,19 +101,6 @@
 		 
 		    switch(msg)
 		    {
-		        case '23':
-		        alert('You may buy no more than 10 of any item');
-		        $('#quantity'+id).val(10);
-		        break;
-
-		        case '24':
-		        alert('Invalid Entry');
-		        $('#quantity'+id).val(1);
-		        break;
-
-		        default:
-		        json=msg;
-		        break;
 		    }
 		        ajaxDone();
 		});
@@ -115,8 +110,12 @@
         // var pos = stage.getPointerPosition();
         // var shape = layer.getIntersection(pos);
         console.log( "e.target = " + e.target.x() );
-	var1
+	
         //layer.draw();
     });
   </script>
+<form method="post" action="" enctype="multipart/form-data">
+<input type="file" name="userfile" id="userfile" />
+<input type="submit" value="Upload Garden File" name="submit" />
+</form>
 </html> 

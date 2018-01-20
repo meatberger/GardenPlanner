@@ -11,53 +11,66 @@ class FileIO
 {
     public $garden;
     
+    public function __construct()
+    {
+        $this->garden = $this->load() ?? FALSE;
+    }
+    public function isLoaded() : bool
+    {
+        return $this->garden!==false ? true : false;
+    }
     public function load()
     {
-        if( file_exists( $_FILES['userfile']['tmp_name'] ) )
-            $xml = simplexml_load_file( $_FILES['userfile']['tmp_name'] );
-        else return FALSE;
-        
-        $xmlString = $xml->asXML();
-        
-        // Prevent XML injection with the following:
-        
-        $oldValue = libxml_disable_entity_loader(true);
-        $dom = new DOMDocument;
-        $dom->loadXML($xmlString);
-        foreach ( $dom->childNodes as $child ) 
+        if( isset($_FILES['userfile']['tmp_name']) && file_exists( $_FILES['userfile']['tmp_name'] ) )
         {
-            if ($child->nodeType === XML_DOCUMENT_TYPE_NODE) 
-            {
-                throw new \InvalidArgumentException(
-                'Invalid XML: Detected use of disallowed DOCTYPE' );
-            }
-        }
-        libxml_disable_entity_loader( $oldValue );
+            $xml = simplexml_load_file( $_FILES['userfile']['tmp_name'] );
+            $xmlString = $xml->asXML();
         
-        // Now, we can process $xml
+            // Prevent XML injection with the following:
+            
+            $oldValue = libxml_disable_entity_loader(true);
+            $dom = new DOMDocument;
+            $dom->loadXML($xmlString);
+            foreach ( $dom->childNodes as $child ) 
+            {
+                if ($child->nodeType === XML_DOCUMENT_TYPE_NODE) 
+                {
+                    throw new \InvalidArgumentException(
+                    'Invalid XML: Detected use of disallowed DOCTYPE' );
+                }
+            }
+            libxml_disable_entity_loader( $oldValue );
+            
+            // Now, we can process $xml
+        }        
+        else 
+            $xml = new SimpleXMLElement("<garden></garden>");
         
             return $xml;
     }
     
-    public function save( SimpleXMLElement $xml )
+    public function save( SimpleXMLElement $xml , $as )
     {
         $file = tmpfile();
-        $xml->asXML();
-        fwrite($file, $xml);
+        $xmlString = $xml->asXML();
+        fwrite($file, $xmlString);
         
-        if (file_exists($file))
+        $newPath = stream_get_meta_data($file)['uri'];
+
+        if (file_exists($newPath))
         {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="'.basename($file).'"');
+            header('Content-Disposition: attachment; filename="'.$as.'"');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
-            header('Content-Length: ' . filesize($file));
-            readfile($file);
+            header('Content-Length: ' . filesize($newPath));
+            readfile($newPath);
             fclose($file); // this removes the file
             exit;
         }
+        else return false;
     }
 }
 

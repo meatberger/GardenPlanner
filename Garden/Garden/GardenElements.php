@@ -59,6 +59,11 @@ class Stone extends GardenElement
 class Walkway extends GardenElement
 {
     public $stones; // array of Stone objects
+    
+    public function __construct()
+    {
+        $this->stones = [];
+    }
 }
 
 ?>
