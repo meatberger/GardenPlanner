@@ -18,14 +18,13 @@ class VisualGarden
         }
         else
         {
-            $this->grow();
+            //$this->grow();
         }
     }
     public function grow()
     {
         $this->gardenFile->garden->addChild("bed", "testing the add element");
-        var_dump($this->gardenFile);
-        //$this->xml = $this->gardenFile->save($this->gardenFile->garden,'sample.garden');
+        $this->xml = $this->gardenFile->save($this->gardenFile->garden,'sample.garden');
     }
     
 }

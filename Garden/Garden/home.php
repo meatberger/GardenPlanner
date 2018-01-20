@@ -7,10 +7,11 @@
  
 require_once 'VisualGarden.php';
 $garden = new VisualGarden;
-//$garden->grow();
+
 if(isset($_POST["submit"]))
 {
-    $garden->load();
+    $garden->gardenFile->load();
+    var_dump($garden);
 }
 
 ?>
