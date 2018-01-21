@@ -11,7 +11,8 @@
 <color>35,122,12</color>
 <type>2</type><!--Type is the type of shape the element assumes, 2 is a polygon-->
 <coordinates>2,2 0,3 0,5 2,7 5,12 9,8 9,1</coordinates><!--This value is space delimited for polygons-->
-<walkway><!--Type is obselete for walkways, as they will be rectangular. This one lies within a garden bed-->
+</bed>
+<walkway><!--Type is obselete for walkways, as they will be rectangular-->
 <substrate>8</substrate>
 <color>45,12,250</color>
 <coordinates>3,4 5,3 7,8 6,8</coordinates>
@@ -22,15 +23,13 @@
 <size>1</size><!--Length of one side, or the radius-->
 </stones>
 </walkway>
-</bed>
-<walkway><!--Walkway outside of garden beds, in the main garden element-->
+<walkway><!--Walkways should be outside of garden beds, in the main garden element-->
 <substrate>8</substrate><!--Even walkways can have a substrate type, brick indicates 0 stones-->
 <color>5,132,50</color>
 <coordinates>23,23 35,33 27,38 20,32</coordinates>
 <stones>
 <origins>25,25 27,25 29,30</origins>
 <type>0</type><!--0=circle-->
-<num>3</num>
 <size>2</size><!--Radius of the stones in this case-->
 </stones>
 </walkway>
@@ -49,12 +48,12 @@
 <color>52,32,5</color>
 <features><!--This bed contains plants. In the future, more features besides plants may be added-->
 <featureType>0</featureType><!--This value is only 0 (plant) for now, but can change if for instance water features are added-->
-<num>3</num><!--The setup of features is similar to that of walkways-->
+<!--The setup of features is similar to that of walkways-->
 <origins>26,26 28,30 32,38</origins>
 <!--One major difference is that sizes must be an array of different-sized data for different plants-->
 <sizes>3,2,1</sizes>
-<!--Similarly, types must be an array of different values that correspond to plants in the database-->
-<types>13,12,11</types>
+<!--Similarly, names must be an array of different names of the plants or features-->
+<names>Lily,Tomato,Potato</names>
 <z>0</z><!--This tag allows for 3D stacking. Just add another features tag with a higher z value-->
 </features>
 <origin>25,16</origin>

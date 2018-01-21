@@ -18,8 +18,14 @@ class GardenBed extends GardenElement
     public $substrate;
     public $substrateColor;
     public $border;
-    public $borderColor;
     public $plants;
+    public $otherFeatures;
+    public $type;
+    public function __construct()
+    {
+        $this->plants = [];
+        $this->otherFeatures = [];
+    }
 }
 
 class CircularBed extends Circle
@@ -57,16 +63,43 @@ class PolygonalBed extends Polygon
 class Stone extends GardenElement
 {
     public $material;
+    public $color;
+    public $size;
+    public $origin;
+    public $type;
 }
 
 class Walkway extends GardenElement
 {
     public $stones; // array of Stone objects
-    
+    public $substrate;
+    public $substrateColor;
+    public $length;
+    public $width;
+    public $coordinates;
+
     public function __construct()
     {
         $this->stones = [];
     }
 }
-
+class Border
+{
+    public $width;
+    public $substrate;
+    public $color;
+    public function __construct($width=1,$substrate=0,$r=178,$g=34,$b=34)
+    {
+        $this->width = $width;
+        $this->substrate = $substrate;
+        $this->color = "rgb($r,$g,$b)";
+    }
+}
+class Plant extends Circle
+{
+    public $origin;
+    public $name;
+    public $size;
+    public $z;
+}
 ?>

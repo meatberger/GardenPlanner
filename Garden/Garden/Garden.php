@@ -12,14 +12,16 @@ class Garden
 {
     public $beds; // 2D array of all garden beds
     public $walkways; // 2D array of all walkways
-    public $length;
-    public $width;
-    public $unit; // The unit of measurement for the garden
+    public $size;
+    public $unit; // The system of measurement for the garden, 'US' or 'INT'
+    public $color;
+    public $border;
+    public $substrate;
     
     public function __construct()
     {
-        $beds = [];
-        $walkways = [];
+        $this->beds = [];
+        $this->walkways = [];
     }
 }
 
