@@ -16,6 +16,9 @@ class GardenElement extends Shape
 class GardenBed extends GardenElement
 {
     public $substrate;
+    public $substrateColor;
+    public $border;
+    public $borderColor;
     public $plants;
 }
 

@@ -6,7 +6,16 @@
  */
  
 require_once 'VisualGarden.php';
+require_once 'simple_html_dom.php';
+
 $garden = new VisualGarden;
+$searchKey = 'Carrot';
+$searchKey=str_replace(' ','+',$searchKey);
+$html =file_get_html("https://www.google.com/search?q=".$searchKey."&tbm=isch");
+$result = $html->find('img');
+//Considered using this API to locate plants, yet it is hard for the user to know what common name fits thier plant
+//https://plantsdb.xyz/search?fields=Scientific_Name_x,Common_Name,Species,Genus,Family,xOrder,Class,SubClass,Kingdom,SubKingdom,Category,Duration,Variety&Common_Name=carrot
+echo '<img src="'.$result[0]->src.'">';
 
 if(isset($_POST["submit"]))
 {
