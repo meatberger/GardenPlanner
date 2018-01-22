@@ -54,28 +54,58 @@ class FileIO
                 $bed = new GardenBed;
                 $bed->type = $xmlBed->type;
                 $bed->substrate = $xmlBed->substrate;
-                $bed->substrateColor = 'rgb('.$xmlBed->color.')';
+                $bed->substrateColor = 'rgb('.$xmlBed->color.');';
                 $bed->border = $xmlBed->border;
                 foreach( $xmlBed->features as $feature )
                 {
-                     if($feature->$featureType==0) // plant, change this code in future to add features
-                     {#plot -> Change this code to load plant objects into array, and stones
-                        $plant = new Plant;
-                        $plant->origins = $feature->origins;
-                        $plant->names = $feature->names;
-                        $plant->sizes = $feature->sizes;
-                        $plant->z = $feature->z;
-                        $bed->plants[] = $plant;
+                     if($feature->$featureType==0)
+                     {
+                        $origins = explode(" ", $feature->origins);
+                        $names = explode(",", $feature->names);
+                        $sizes = explode(",", $feature->sizes);
+                        $i = 0;
+
+                        $numOrigins = count($origins);
+
+                        if( $numOrigins !== count($names) || $numOrigins !== count($sizes) ) return false;
+                        
+                        foreach( $origins as $origin )
+                        {
+                            $plant = new Plant;
+                            $plant->origin = $origin;
+                            $plant->name = $names[$i];
+                            $plant->size = $sizes[$i];
+                            $plant->z = $feature->z;
+                            $bed->plants[] = $plant;
+                            $i++;
+                        }                     
+                        
                      }
                 }
                
                 $this->garden->beds[] = $bed;
-            }
+            } // end of garden beds
 
-            foreach($this->xml->walkways as $walkway)
+            foreach($this->xml->walkways as $xmlWalkway)
             {
-                
-            } $this->garden->walkways[] = $walkway;
+                $walkway = new Walkway;
+                $walkway->type = $xmlWalkway->type;
+                $walkway->substrate = $xmlWalkway->substrate;
+                $walkway->substrateColor = 'rgb('.$xmlWalkway->color.');';
+                $walkway->border = $xmlWalkway->border;
+                $walkway->coordinates = explode(" ", $xmlWalkway->coordinates);
+                $stonesOrigins = explode( " ", $xmlWalkway->stones->coordinates );
+                foreach( $stonesOrigins as $coord )
+                {   
+                    $stone = new Stone;
+                    $stone->color = "rgb(" . $xmlWalkway->stones->color . ");";
+                    $stone->size = $xmlWalkway->stones->size;
+                    $stone->type = $xmlWalkway->stones->type;
+                    $stone->origin = $coord;
+                    $walkway->stones[] = $stone;
+                }
+                $this->garden->walkways[] = $xmlWalkway;
+            } 
         }        
         else 
             $this->xml = new SimpleXMLElement("<garden></garden>");

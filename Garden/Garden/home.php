@@ -8,19 +8,20 @@
 require_once 'VisualGarden.php';
 require_once 'simple_html_dom.php';
 
-
-$searchKey = 'Red Pepper';
-$searchKey=str_replace(' ','+',$searchKey);
-$html =file_get_html("https://www.google.com/search?q=site:www.burpee.com/+".$searchKey."&tbm=isch");
-$result = $html->find('img');
-echo '<img src="'.$result[0]->src.'">';
-
-if(isset($_POST["submit"]))
+function imageForKey($searchKey)
 {
-    $garden = new VisualGarden;
-    var_dump($garden);
-}
+    $searchKey=str_replace(' ','+',$searchKey);
+    $html = @file_get_html("https://www.google.com/search?q=site:www.burpee.com/+".$searchKey."&tbm=isch") ?? false;
+    $result = $html!=false ? $html->find('img') : false;
+    if($result!=false) return '<img src="'.$result[0]->src.'">';
+    else return 'No Image';
 
+    if(isset($_POST["submit"]))
+    {
+        $garden = new VisualGarden;
+        var_dump($garden);
+    }
+}
 ?>
 
 <html>
