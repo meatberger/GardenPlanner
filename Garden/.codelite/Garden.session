@@ -1,47 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Session Name="/opt/lampp/htdocs/GardenPlanner/Garden/Garden.workspace">
-  <int Value="4" Name="m_selectedTab"/>
+  <int Value="2" Name="m_selectedTab"/>
   <wxString Value="/opt/lampp/htdocs/GardenPlanner/Garden/Garden.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
-      <wxString Value="/opt/lampp/htdocs/GardenPlanner/Garden/Garden/FileIO.php" Name="FileName"/>
+      <wxString Value="/opt/lampp/htdocs/GardenPlanner/Garden/Garden/VisualGarden.php" Name="FileName"/>
       <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="10" Name="CurrentLine"/>
+      <int Value="15" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
-      <wxString Value="/opt/lampp/htdocs/GardenPlanner/Garden/Garden/Garden.php" Name="FileName"/>
-      <int Value="2" Name="FirstVisibleLine"/>
-      <int Value="16" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/opt/lampp/htdocs/GardenPlanner/Garden/Garden/GardenElements.php" Name="FileName"/>
-      <int Value="3" Name="FirstVisibleLine"/>
-      <int Value="3" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/opt/lampp/htdocs/GardenPlanner/Garden/Garden/ClipDetector.php" Name="FileName"/>
+      <wxString Value="/opt/lampp/htdocs/GardenPlanner/Garden/Garden/main.css" Name="FileName"/>
       <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="47" Name="CurrentLine"/>
+      <int Value="0" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="/opt/lampp/htdocs/GardenPlanner/Garden/Garden/home.php" Name="FileName"/>
-      <int Value="51" Name="FirstVisibleLine"/>
-      <int Value="80" Name="CurrentLine"/>
+      <int Value="27" Name="FirstVisibleLine"/>
+      <int Value="37" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/opt/lampp/htdocs/GardenPlanner/Garden/Garden/global.js" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="15" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/opt/lampp/htdocs/GardenPlanner/Garden/Garden/FileIO.php" Name="FileName"/>
+      <int Value="48" Name="FirstVisibleLine"/>
+      <int Value="52" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/opt/lampp/htdocs/GardenPlanner/Garden/Garden/Garden.php" Name="FileName"/>
+      <int Value="3" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="/opt/lampp/htdocs/GardenPlanner/Garden/Garden/GardenElements.php" Name="FileName"/>
+      <int Value="72" Name="FirstVisibleLine"/>
+      <int Value="18" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="/opt/lampp/htdocs/GardenPlanner/Garden/Garden/Shapes.php" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="0" Name="CurrentLine"/>
+      <int Value="3" Name="FirstVisibleLine"/>
+      <int Value="7" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>

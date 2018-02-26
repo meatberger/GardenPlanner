@@ -14,11 +14,11 @@ class FileIO
     public $garden;
     public $isLoaded;
 
-    public function __construct($autoLoad = true)
+    public function __construct( $autoLoad = true )
     {
         $this->garden = new Garden;
         $this->isLoaded = false;
-        if($autoLoad) $this->load();
+        if( $autoLoad ) $this->load();
     }
 
     private function load()
@@ -49,10 +49,15 @@ class FileIO
             $this->garden->size = $this->xml->size;
             $this->garden->color = $this->xml->color;
             $this->garden->border = $this->xml->border;
+            $this->garden->substrate = $this->xml->substrate;
+            $this->garden->substrateColor = 'rgb('.$this->xml->color.');';
+
             foreach($this->xml->bed as $xmlBed)
             {
                 $bed = new GardenBed;
                 $bed->type = $xmlBed->type;
+                $bed->coordinates = explode(" ", $xmlBed->coordinates);
+                $bed->origin = $bed->coordinates[0];
                 $bed->substrate = $xmlBed->substrate;
                 $bed->substrateColor = 'rgb('.$xmlBed->color.');';
                 $bed->border = $xmlBed->border;
@@ -111,6 +116,8 @@ class FileIO
             $this->xml = new SimpleXMLElement("<garden></garden>");
         
         $this->isLoaded = true;
+        
+        fclose( $_FILES['userfile']['tmp_name'] );
     }
     
     public function save()

@@ -8,6 +8,18 @@
  
 require_once 'ClipDetector.php';
 
+// No substrate
+const GRASS = -1;
+
+// Substrate types
+const MULCH = 0;
+const SOIL = 1;
+const WATER = 2;
+
+// Stone materials
+const BRICK = 3;
+const STONE = 4;
+
 class GardenElement extends Shape
 {
     public $name;
@@ -19,8 +31,8 @@ class GardenBed extends GardenElement
     public $substrateColor;
     public $border;
     public $plants;
-    public $otherFeatures;
-    public $type;
+    public $otherFeatures; // non-plant garden features
+    public $type; // Shape type (Circle, Ellipse, Polygon)
     public function __construct()
     {
         $this->plants = [];
@@ -76,8 +88,7 @@ class Walkway extends GardenElement
     public $substrateColor;
     public $length;
     public $width;
-    public $coordinates;
-
+    
     public function __construct()
     {
         $this->stones = [];

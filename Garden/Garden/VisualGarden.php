@@ -9,8 +9,6 @@ class VisualGarden
     public function __construct()
     {
         $this->gardenFile = new FileIO;
-
-        
     }
     public function grow()
     {

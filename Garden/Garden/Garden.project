@@ -9,17 +9,32 @@
       <File Name="Classes/Overlaps.h"/>
       <File Name="Classes/Shape.h"/>
       <File Name="Classes/Shape.cpp"/>
-      <File Name="Classes/clipper.cpp"/>
-      <File Name="Classes/clipper.hpp"/>
-      <File Name="Classes/CMakeLists.txt"/>
-      <File Name="Classes/polyclipping.pc.cmakein"/>
+      <VirtualDirectory Name="Dependencies">
+        <File Name="Classes/clipper.cpp"/>
+        <File Name="Classes/clipper.hpp"/>
+        <File Name="Classes/CMakeLists.txt"/>
+        <File Name="Classes/polyclipping.pc.cmakein"/>
+      </VirtualDirectory>
     </VirtualDirectory>
     <File Name="home.php"/>
-    <File Name="FileIO.php"/>
-    <File Name="Garden.php"/>
-    <File Name="Shapes.php"/>
-    <File Name="GardenElements.php"/>
-    <File Name="ClipDetector.php"/>
+    <VirtualDirectory Name="PHP Dependencies">
+      <File Name="simple_html_dom.php"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="Stylesheets">
+      <File Name="global.css"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="PHP Classes">
+      <File Name="ClipDetector.php"/>
+      <File Name="FileIO.php"/>
+      <File Name="Garden.php"/>
+      <File Name="GardenElements.php"/>
+      <File Name="Shapes.php"/>
+      <File Name="VisualGarden.php"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="Javascript">
+      <File Name="global.js"/>
+      <File Name="garden.js"/>
+    </VirtualDirectory>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
